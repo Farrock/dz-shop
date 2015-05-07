@@ -1,0 +1,94 @@
+doctype html
+
+//- var footerMenu             = {'about': {1:'О магазине',2:'О нас',3:'Наши цены', 4: 'Наши скидки', 5: 'Акции'},'catalog': {1:'Каталог',2:'Смартфоны',3:'Планшеты', 4: 'Компьютеры', 5: 'Аксессуары'},'contacts': {1:'Контакты',2:'Телефоны',3:'Адреса', 4: 'Карта проезда', 5: 'Обратная связь'}}
+- var footerMenu2            = []
+- var footerMenu_about       = {1:'О магазине',2:'О нас',3:'Наши цены', 4: 'Наши скидки', 5: 'Акции'}
+- var footerMenu_catalog     = {1:'Каталог',2:'Смартфоны',3:'Планшеты', 4: 'Компьютеры', 5: 'Аксессуары'}
+- var footerMenu_contacts    = {1:'Контакты',2:'Телефоны',3:'Адреса', 4: 'Карта проезда', 5: 'Обратная связь'};
+- footerMenu2.push(footerMenu_about); footerMenu2.push(footerMenu_catalog); footerMenu2.push(footerMenu_contacts);
+
+- var footerLinksApp         = {0:{'class': 'appstore', 'text': 'AppStore', 'href': '#'}, 0:{'class': 'googleplay', 'text': 'Google play', 'href': '#'}}
+- var footerLinksSoc         = {0:{'class': 'vk', 'text': 'Вконтакте', 'href': '#'}, 0:{'class': 'fb', 'text': 'Facebook', 'href': '#'}, 2:{'class': 'tw', 'text': 'Twitter', 'href': '#'}}
+- var topCatalog             = {1:'Мобильные телефоны',2:{'name':'Планшеты', 'current': 'current'},3:'Mp3 плееры', 4: 'Персональные компьютеры', 5: 'Ноутбуки', 6: 'Apple TV', 7: 'Аксуссуары'}
+- var leftMenuLvl_1          = {1:'iPhone',2:'iPad',3:'iMac', 4: 'MacBook', 5: 'iPod', 6: 'Другое'}
+- var leftMenuLvl_2          = {1:'iPhone 4s',2:'iPhone 5',3:'iPhone 5s с экслюзивным дизайном', 4: 'iPhone 6', 5: 'iPhone 6plus'}
+- var breadcrumbs            = ['Главная', 'Каталог']
+//- var catalog_old            = {1: {'img': '../img/display.png', 'title': 'Apple Thunderbolt Display 27"', 'desc': 'Артикул: 42787825, Опция: включена, Цвет: серебристый, Размер: '},2: {'img': '../img/imac.png', 'title': 'Apple iMac 27"', 'desc': 'Артикул: 42787825, Опция: включена, Цвет: серебристый, Размер: '},3: {'img': '../img/iphone.png', 'title': 'iPhone 5s Gold', 'desc': 'Артикул: 42787825, Опция: включена, Цвет: серебристый, Размер: '},4: {'img': '../img/ipad.png', 'title': 'iPad Air Wi-Fi + Cellular 128GB - Silver', 'desc': 'iPad Air Wi-Fi + Cellular 128GB - Silver'},5: {'img': '../img/ipod.png', 'title': 'Apple iPod nano 7G 16 ГБ Blue', 'desc': 'Артикул: 42787825, Опция: включена, Цвет: серебристый, Размер: '},6: {'img': '../img/router.png', 'title': 'Роутер Wi-Fi Apple AirPort Extreme Base Station', 'desc': 'Артикул: 42787825, Опция: включена, Цвет: серебристый, Размер: '},}
+- var catalog           = []
+- var catalog_item_1    = {'img': '../img/display.png', 'title': 'Apple Thunderbolt Display 27"', 'desc': 'Артикул: 42787825, Опция: включена, Цвет: серебристый, Размер: '}
+- var catalog_item_2    = {'img': '../img/imac.png', 'title': 'Apple iMac 27"', 'desc': 'Артикул: 42787825, Опция: включена, Цвет: серебристый, Размер: '}
+- var catalog_item_3    = {'img': '../img/iphone.png', 'title': 'iPhone 5s Gold', 'desc': 'Артикул: 42787825, Опция: включена, Цвет: серебристый, Размер: '}
+- var catalog_item_4    = {'img': '../img/ipad.png', 'title': 'iPad Air Wi-Fi + Cellular 128GB - Silver', 'desc': 'iPad Air Wi-Fi + Cellular 128GB - Silver'}
+- var catalog_item_5    = {'img': '../img/ipod.png', 'title': 'Apple iPod nano 7G 16 ГБ Blue', 'desc': 'Артикул: 42787825, Опция: включена, Цвет: серебристый, Размер: '}
+- var catalog_item_6    = {'img': '../img/router.png', 'title': 'Роутер Wi-Fi Apple AirPort Extreme Base Station', 'desc': 'Артикул: 42787825, Опция: включена, Цвет: серебристый, Размер: '}
+- catalog.push(catalog_item_1); catalog.push(catalog_item_2);catalog.push(catalog_item_3); catalog.push(catalog_item_4); catalog.push(catalog_item_5); catalog.push(catalog_item_6);
+
+- var phone_code    = "+7921"
+- var phone_val     = "3221232"
+- var email         = "manager@company.com"
+
+html
+    head
+        title
+    body
+        .wrapper
+            header.header
+                .container
+                    a.header__in-logo(href="/")
+                        img(src="../img/header-logo.png" alt="")
+                        | header logo text
+                    .header__in-contacts
+                        a.header__in-contacts__phone(href="#{phone_code}#{phone_val}")
+                            span.header__in-contacts__phone-code= phone_code
+                            |#{phone_val}
+
+                        a.header__in-contacts__email(href="#{email}") #{email}
+
+            .content
+                .container
+
+                    ul.topcatalog
+                        each item, index in topCatalog
+                            li.topcatalog__item
+                                if(item.current)
+                                    a.topcatalog__item-link(href="#", class="#{item.current}")= item.name
+                                else
+                                    a.topcatalog__item-link(href="#")= item
+
+
+                    if breadcrumbs.length
+                        ul.breadcrumbs
+                            each item, index in breadcrumbs
+                                li.breadcrumbs__item
+                                    if index == breadcrumbs.length-1
+                                        span.breadcrumbs__item-last= item
+                                    else
+                                        a.breadcrumbs__item-link(href="")= item
+                    aside.content__left
+                    .content__right
+            footer.footer
+                .container
+                    a.footer__logo(href="link")
+                        img(src="../img/footer-logo.png" alt="")
+                        | footer logo text
+
+                    .footer__menu
+                        each menulist in footerMenu2
+                            ul.footer_menu__list
+                                each menuitem, i in menulist
+                                    li.footer__menu__item
+                                        if(i == 1)
+                                            span.footer__menu__item-title= menuitem
+                                        else
+                                            a.footer__menu__item-link(href="#")= menuitem
+                    .footer__links
+                        ul.footer__links__app-stores
+                            each item in footerLinksApp
+                                li.footer__links__app-stores__item
+                                    a.footer__links__app-stores__item-link(href="#{item.href}" class="#{item.class}")=item.text
+                        ul.footer__links__soc
+                            each item in footerLinksSoc
+                                li.footer__links__soc__item
+                                    a.footer__links__soc__item-link(href="#{item.href}" class="#{item.class}")=item.text
+
+
