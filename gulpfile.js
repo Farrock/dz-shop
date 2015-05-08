@@ -1,20 +1,65 @@
-var gulp            = require('gulp');
-var autoprefixer    = require('gulp-autoprefixer');
-var livereload      = require('gulp-livereload');
-var connect         = require('gulp-connect');
-var opn             = require('opn');
-var sass            = require('gulp-sass');
-var jade            = require('gulp-jade');
-var prettify        = require('gulp-prettify');
 
-gulp.task('default', ['connect', 'jade', 'sass', 'watch']);
+'use strict';
+
+var gulp        = require("gulp");
+var jade        = require('gulp-jade');
+var prettify    = require('gulp-prettify');
+var wiredep     = require('wiredep').stream;
+var useref      = require('gulp-useref');
+var uglify      = require('gulp-uglify');
+var clean       = require('gulp-clean');
+var gulpif      = require('gulp-if');
+var filter      = require('gulp-filter');
+var size        = require('gulp-size');
+var imagemin    = require('gulp-imagemin');
+var concatCss   = require('gulp-concat-css');
+var minifyCss   = require('gulp-minify-css');
+var browserSync = require('browser-sync');
+var gutil       = require('gulp-util');
+var ftp         = require('vinyl-ftp');
+var reload      = browserSync.reload;
 
 
+// ====================================================
+// ====================================================
+// ============== Локальная разработка APP ============
 
-gulp.task('watch', function() {
-    gulp.watch('dev/sass/*.scss', ['sass']);
+// Компилируем Jade в html
+gulp.task('jade', function() {
+    gulp.src('dev/jade/*.jade')
+        .pipe(jade())
+        .on('error', log)
+        .pipe(prettify({"indent_size": 1, "indent_char": "\t"}))
+        .pipe(gulp.dest('app/'))
+        .pipe(reload({stream: true}));
+});
+
+// Подключаем ссылки на bower components
+gulp.task('wiredep', function () {
+    gulp.src('dev/jade/*.jade')
+        .pipe(wiredep({
+            ignorePath: /^(\.\.\/)*\.\./
+        }))
+        .pipe(gulp.dest('dev/jade/'))
+});
+
+// Запускаем локальный сервер (только после компиляции jade)
+gulp.task('server', ['jade'], function () {
+    browserSync({
+        notify: false,
+        port: 8888,
+        server: {
+            baseDir: 'app'
+        }
+    });
+});
+
+// слежка и запуск задач
+gulp.task('watch', function () {
     gulp.watch('dev/jade/*.jade', ['jade']);
-    //gulp.watch('app/*.html', ['html']);
+    gulp.watch('dev/sass/*.scss', ['sass']);
+    gulp.watch('bower.json', ['wiredep']);
+    gulp.watch(['app/js/**/*.js',]).on('change', reload);
 });
 
 gulp.task('sass', function () {
@@ -24,38 +69,15 @@ gulp.task('sass', function () {
         .pipe(minifyCSS({keepBreaks: true, advanced: false, compatibility: 'ie8'} ))
         .pipe(autoprefixer("last 5 versions"))
         .pipe(gulp.dest('app/css'))
-        .pipe(connect.reload());
+        .pipe(reload({stream: true}));
 });
 
-gulp.task('jade', function() {
-    gulp.src('dev/jade/*.jade')
-        .pipe(jade())
-        .on('error', log)
-        .pipe(prettify({"indent_size": 1,
-            "indent_char": "\t"}))
-        .pipe(gulp.dest('app/'))
-        .pipe(connect.reload());
-});
+// Задача по-умолчанию
+gulp.task('default', ['server', 'watch']);
 
 
-
-gulp.task('html', function() {
-    gulp.src('app/*.html')
-        .pipe(connect.reload());
-});
-
-
-
-gulp.task('connect', function() {
-    connect.server({
-        root: 'app',
-        livereload: true,
-        port:8888
-    });
-    //opn('http://localhost:8888/')
-});
-
-function log(error) {
+// Более наглядный вывод ошибок
+var log = function (error) {
     console.log([
         '',
         "----------ERROR MESSAGE START----------",
@@ -66,3 +88,4 @@ function log(error) {
     ].join('\n'));
     this.end();
 }
+

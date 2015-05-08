@@ -1,4 +1,3 @@
-# dz4
 loftschool dz-shop
 
 Как установить?
