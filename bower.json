@@ -1,3 +1,6 @@
 {
-  "name": "dz-shop"
+  "name": "dz-shop",
+  "dependencies": {
+    "normalize.css": "~3.0.3"
+  }
 }

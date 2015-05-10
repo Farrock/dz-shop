@@ -1,0 +1,461 @@
+@import 'includes';
+
+// helpers
+
+.clearfix:before,
+.clearfix:after,
+.container:before,
+.container:after, {
+  content: " ";
+  display: table;
+}
+
+.container:after,
+.clearfix:after {
+  clear: both;
+}
+
+a {
+  color: $link_c;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+body {
+  color: $defaul_font_c;
+}
+
+// my styles
+.header {
+  background: url('../img/header-bg.png') center center no-repeat $header_bg_age_c;
+  height: $header_h;
+
+  .container {
+    padding-top: 24px;
+  }
+  .header__in-logo {
+    display: inline-block;
+    float: left;
+    font-size: 0px;
+  }
+  .header__in-contacts {
+    display: inline-block;
+    float: right;
+    text-align: right;
+    .header__in-contacts__phone {
+      text-decoration: none;
+      position: relative;
+      right: -5px;
+      top: -4px;
+      font: 'elektra_light_pro';
+      font-size: 28px;
+      letter-spacing: 2px;
+      color: $defaul_font_c;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    .header__in-contacts__phone-code {
+      color: $link_c;
+      font-size: 14px;
+      letter-spacing: 1px;
+      font-weight: bold;
+      position: relative;
+      top: -10px;
+      padding-right: 8px;
+    }
+    .header__in-contacts__email {
+      color: $email_link_c;
+      font-size: 16px;
+      letter-spacing: 0.6px;
+    }
+  }
+
+}
+
+.topcatalog {
+
+  @include clear_list(inline-block, '.topcatalog__item');
+  position: relative;
+  top: -19px;
+  height: 40px;
+  font-size: 0px;
+
+  .topcatalog__item {
+    border-bottom: 1px solid lightgrey;
+    &:hover {
+      .topcatalog__item-link-in:after {
+        background: url(../img/top_menu_bg_hover-sep.png) no-repeat top right !important;
+      }
+    }
+    &:last-child {
+      .topcatalog__item-link-in {
+        padding-right: 7px;
+      }
+      .topcatalog__item-link-in:after {
+        display: block;
+        width: 16px;
+        height: 42px;
+        background: url(../img/top_menu_bg_right.png) no-repeat top right;
+        content: " ";
+        position: absolute;
+        right: -14px;
+        top: -2px;
+      }
+
+    }
+
+  }
+
+  .current {
+    .topcatalog__item-link {
+      background: url('../img/top_menu_bg_left_active.png') top left no-repeat;
+      &:last-child {
+        .topcatalog__item-link-in:after {
+          background: url(../img/top_menu_bg_active-sep.png) no-repeat top right;
+        }
+      }
+    }
+    .topcatalog__item-link-in {
+      color: white;
+      background-color: $top_menu_item_active_c;
+      &:hover {
+        color: white;
+      }
+    }
+  }
+
+  .topcatalog__item-link {
+    position: relative;
+    display: inline-block;
+    background: url('../img/top_menu_bg_left.png') top left no-repeat;
+    padding-left: 16px;
+    font-size: 15px;
+    &:hover {
+      color: $defaul_font_c;
+      background: url('../img/top_menu_bg_left_h.png') top left no-repeat;
+
+      .topcatalog__item-link-in {
+        background-color: $top_menu_item_hover_c;
+      }
+    }
+
+  }
+
+  .topcatalog__item-link-in {
+    border-bottom: 1px solid #d3d3d3;
+    position: relative;
+    top: 1px;
+    margin-right: -14px;
+    padding: 10px 18px 10px 18px;
+    display: inline-block;
+    text-decoration: none;
+    color: $defaul_font_c;
+    background-color: $left_menu_item_bg_c;
+    &:hover {
+      background-color: $top_menu_item_hover_c;
+    }
+  }
+}
+
+.navline-wp {
+  margin-bottom: 20px;
+  .breadcrumbs {
+    font: 'elektra_light_pro';
+    float: left;
+    font-size: 13px;
+    @include clear_list(inline-block, '.breadcrumbs__item');
+    .breadcrumbs__item {
+    }
+    .breadcrumbs__item-link {
+
+      &:after {
+        padding-left: 5px;
+        content: '';
+        display: inline-block;
+        width: 5px;
+        height: 7px;
+        background: url('../img/arr.png') center right no-repeat;
+      }
+    }
+    .breadcrumbs__item-last {
+    }
+  }
+
+  .layouttypes {
+    float: right;
+    margin-right: 20px;
+    .layouttypes__item {
+      &[selected=selected] {
+
+      }
+    }
+  }
+
+  .pagination {
+    float: right;
+    @include clear_list(inline-block, '.pagination__item');
+    .pagination__item {
+      margin-right: 4px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+}
+
+.content__left {
+  float: left;
+  width: $left_col_w;
+
+  .leftmenu {
+    font: 'elektra_light_pro';
+    font-size: 15px;
+    @include clear_list(block, '.leftmenu__item');
+    .leftmenu__item {
+      background-color: $left_menu_item_bg_c;
+      &.current {
+        background-color: $left_menu_item_active_c;
+      }
+    }
+
+    .leftmenu__item-link {
+      display: block;
+      padding: 6px 15px;
+      color: $defaul_font_c;
+      text-decoration: none;
+      &:hover {
+        text-decoration: none;
+        background-color: $top_menu_item_hover_c;
+      }
+    }
+    .leftmenu-lvl2 {
+      @include clear_list(block, '.leftmenu-lvl2__item');
+
+      .leftmenu-lvl2__item {
+        background-color: $left_menu_item_bg_c;
+        &.current {
+          background-color: $left_menu_item_active_c;
+        }
+        .leftmenu-lvl2__item-link {
+          background-image: url('../img/left_menu_arr.png');
+          background-position: 15px 10px;
+          background-repeat: no-repeat;
+          text-decoration: none;
+          line-height: 18px;
+          display: block;
+          padding: 6px 30px;
+          color: $defaul_font_c;
+          &:hover {
+            text-decoration: none;
+            background-color: $top_menu_item_hover_c;
+          }
+        }
+        &.current {
+          background-color: $left_menu_item_active_c;
+        }
+      }
+    }
+
+  }
+}
+
+.content__right {
+  float: right;
+  width: $right_col_w;
+  .catalog {
+    @include clear_list(block, '.catalog__item');
+    .catalog__item {
+      padding: 30px 0 26px 12px;
+      margin-bottom: 20px;
+      border: 1px solid $catalog_cart_border_c;
+      &:hover {
+        box-shadow: 0 0 3px 3px $catalog_cart_border_c;
+      }
+      .catalog__item-img-wp {
+        float: left;
+        width: 168px;
+        height: 102px;
+        text-align: center;
+        // 544
+        .catalog__item-img {
+
+        }
+      }
+
+      .catalog__item-data {
+        float: right;
+        width: 546px;
+        .catalog__item-link {
+          font: 'elektra_light_pro';
+          font-size: 15px;
+          display: inline-block;
+          margin-bottom: 18px;
+        }
+
+        .catalog__itemprops {
+          @include clear_list(inline-block, '.catalog__itemprops-item');
+          .catalog__itemprops-item {
+            font: 'elektra_light_pro';
+            font-size: 14px;
+            .catalog__itemprops-item-key {
+              padding-right: 4px;
+            }
+            .catalog__itemprops-item-val {
+            }
+          }
+        }
+      }
+
+    }
+
+  }
+
+  .article {
+    padding-bottom: 45px;
+    font: 'elektra_light_pro';
+    h1 {
+      padding-top: 12px;
+      padding-bottom: 0px;
+      font-weight: bold;
+      font-size: 25px;
+
+    }
+    p {
+
+      font-seze: 15px;
+      margin-top: -8px;
+      margin-bottom: 30px;
+      line-height: 20px;
+    }
+  }
+
+}
+
+.wrapper {
+  position: relative;
+  min-height: 100%;
+  height: auto !important;
+  overflow: hidden;
+}
+
+.wrapper:after {
+  content: "";
+  height: $footer_h;
+  display: block;
+}
+
+.footer {
+  height: $footer_h;
+  margin-top: -$footer_h;
+  background: url('../img/footer_bg_pattern.png') center repeat $footer_bg_c;
+
+  .footer__logo {
+    font-size: 0px;
+  }
+}
+
+.container {
+  margin: auto;
+  width: $page_w;
+}
+
+.content {
+  .content__left {
+    width: $left_col_w;
+  }
+  .content__right {
+    width: $right_col_w;
+  }
+}
+
+.footer {
+  .content__right, .content__left {
+    position: relative;
+  }
+  .footer__logo {
+    position: relative;
+    top: 100px;
+
+  }
+  .footer__menu {
+    position: relative;
+    top: 55px;
+
+    .footer_menu__list {
+      display: inline-block;
+      margin-right: 66px !important;
+      @include clear_list(inline-block, '.footer_menu__list');
+      .footer__menu__item {
+        font: 'elektra_light_pro';
+        font-size: 15px;
+        line-height: 25px;
+        .footer__menu__item-title {
+
+          color: #ffffff;
+          font-weight: bold;
+        }
+        .footer__menu__item-link {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+
+  .footer__links {
+    .footer__links__app-stores {
+      position: absolute;
+      top: 58px;
+      right: 0px;
+      @include clear_list(inline-block, '.footer__links__app-stores__item');
+      .footer__links__app-stores__item {
+        .footer__links__app-stores__item-link {
+          width: 90px;
+          height: 32px;
+
+          display: block;
+          font-size: 0;
+          &.appstore {
+            background: url('../img/appstore.png') 0 0 no-repeat;
+          }
+          &.googleplay {
+            background: url('../img/googleplay.png') 0 0 no-repeat;
+          }
+        }
+      }
+    }
+  }
+
+  .footer__links__soc {
+    position: absolute;
+    top: 115px;
+    right: 45px;
+    @include clear_list(inline-block, '.footer__links__soc__item');
+    .footer__links__soc__item {
+
+      width: 44px;
+      height: 44px;
+      .footer__links__soc__item-link {
+        width: 44px;
+        height: 44px;
+        background-image: url('../img/social.png');
+        background-repeat: no-repeat;
+        display: block;
+        font-size: 0;
+        &.vk {
+          background-position: 0 0;
+        }
+        &.fb {
+          background-position: -53px 0px;
+        }
+        &.tw {
+          background-position: -100px 0px;
+        }
+      }
+    }
+  }
+
+}

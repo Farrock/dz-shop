@@ -1,0 +1,51 @@
+// vars - colors
+// text
+$link_c:                #00b9fe;
+$defaul_font_c:         #5c7b98;
+$footer_text_font_c:    #00b9fe;
+$innactive_text_c:      #bed1e3;
+$email_link_c:          #694499;
+$catalog_cart_border_c: #dae1eb;
+// bg
+$header_bg_center_c:  #f1f5f8;
+$header_bg_age_c:     #d9e4f0;
+$footer_bg_c:         #6a4599;
+
+$left_menu_item_bg_c:     #f7f7f7;
+$left_menu_item_active_c: #00b9fe;
+$left_menu_item_hover_c:  #dce6f0;
+$left_menu_separator_c:   #000;
+
+$top_menu_item_bg_c:      $left_menu_item_bg_c;
+$top_menu_item_active_c:  $left_menu_item_active_c;
+$top_menu_item_hover_c:   $left_menu_item_hover_c;
+$top_menu_separator_c:    $left_menu_separator_c;
+
+
+
+// vars - measures
+$header_h:        120px;
+$footer_h:        238px;
+$page_w:          1000px;
+$left_col_w:      230px;
+$right_col_w:     742px;
+
+// mixin
+@mixin clear_mp() {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin clear_list($display-item, $selector) {
+  @include clear_mp();
+  #{$selector} {
+    @include clear_list_item($display-item);
+  }
+  list-style-type: none;
+}
+
+@mixin clear_list_item($display) {
+  @include clear_mp();
+  list-style-type: none;
+  display: $display;
+}
