@@ -94,3 +94,72 @@ var log = function (error) {
     this.end();
 }
 
+
+// ====================================================
+// ====================================================
+// ================= Сборка DIST ======================
+
+// Очистка папки
+gulp.task('clean', function () {
+    return gulp.src('dist')
+        .pipe(clean());
+});
+
+// Переносим HTML, CSS, JS в папку dist
+gulp.task('useref', function () {
+    var assets = useref.assets();
+    return gulp.src('app/*.html')
+        .pipe(assets)
+        .pipe(gulpif('*.js', uglify()))
+        .pipe(gulpif('*.css', minifyCss()))
+        .pipe(assets.restore())
+        .pipe(useref())
+        .pipe(gulp.dest('dist'));
+});
+
+// Перенос шрифтов
+gulp.task('fonts', function() {
+    gulp.src('app/fonts/*')
+        .pipe(filter(['*.eot','*.svg','*.ttf','*.woff','*.woff2']))
+        .pipe(gulp.dest('dist/fonts/'))
+});
+
+// Картинки
+gulp.task('images', function () {
+    return gulp.src('app/img/**/*')
+        .pipe(imagemin({
+            progressive: true,
+            interlaced: true
+        }))
+        .pipe(gulp.dest('dist/img'));
+});
+
+// Остальные файлы, такие как favicon.ico и пр.
+gulp.task('extras', function () {
+    return gulp.src([
+        'app/*.*',
+        '!app/*.html'
+    ]).pipe(gulp.dest('dist'));
+});
+
+// Сборка и вывод размера содержимого папки dist
+gulp.task('dist', ['useref', 'images', 'fonts', 'extras'], function () {
+    return gulp.src('dist/**/*').pipe(size({title: 'build'}));
+});
+
+// Собираем папку DIST (только после компиляции Jade)
+gulp.task('build', ['clean', 'jade'], function () {
+    gulp.start('dist');
+});
+
+// Проверка сборки
+gulp.task('server-dist', function () {
+    browserSync({
+        notify: false,
+        port: 9000,
+        server: {
+            baseDir: 'dist'
+        }
+    });
+});
+

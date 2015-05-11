@@ -38,9 +38,10 @@ html
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
 
 
-        meta(name="description", content="loftschool_homework")
-        meta(name="keywords", content="loftschool_homework")
-        meta(name="author", content="Gomer Simpson")
+        meta(name="description", content="loftschool_homework-shop")
+        meta(name="keywords", content="loftschool_homework-shop")
+        meta(name="author", content="Павел Щеглов")
+
 
         <!-- build:css fonts/fonts.min.css -->
         link(rel="stylesheet", href="fonts/elektra_light_pro-webfont.css")
@@ -49,23 +50,17 @@ html
         link(rel="stylesheet", href="fonts/font-webfont.css")
         <!-- endbuild -->
 
-
+        <!-- build:css css/vendor.min.css -->
         // bower:css
         link(rel='stylesheet', href='/bower/normalize.css/normalize.css')
         // endbower
+        <!-- endbuild -->
 
-        // bower:js
-        script(src='/bower/jquery/dist/jquery.js')
-        script(src='/bower/tether/tether.js')
-        script(src='/bower/select/select.min.js')
-        // endbower
 
-        script(src='js/btn-up.js')
-        script(src='js/main.js')
-
+        <!-- build:css css/main.min.css -->
         link(rel="stylesheet", href="css/main.css")
         link(rel="stylesheet", href="css/select-theme-default.css")
-
+        <!-- endbuild -->
     body
         .wrapper
             .main-content
@@ -193,4 +188,15 @@ html
                                 li.footer__links__soc__item
                                     a.footer__links__soc__item-link(href="#{item.href}" class="#{item.class}")=item.text
 
+    <!-- build:js js/vendor.js -->
+    // bower:js
+    script(src='/bower/jquery/dist/jquery.js')
+    script(src='/bower/tether/tether.js')
+    script(src='/bower/select/select.min.js')
+    // endbower
+    <!-- endbuild -->
 
+    <!-- build:js js/main.js -->
+    script(src='js/btn-up.js')
+    script(src='js/main.js')
+    <!-- endbuild -->
