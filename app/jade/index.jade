@@ -25,7 +25,7 @@ doctype html
 - catalog.push(catalog_item_1); catalog.push(catalog_item_2);catalog.push(catalog_item_3); catalog.push(catalog_item_4); catalog.push(catalog_item_5); catalog.push(catalog_item_6);
 
 - var pagination    = ['1', '2', '3', '4', '5', 'Все']
-- var layouttypes   = ['Сеткой', 'Линиями']
+- var layouttypes   = {0:{'value': 'catalog-line', 'txt': 'Линиями'}, 1:{'value': 'catalog-grid', 'txt': 'Сеткой'}}
 - var phone_code    = "+7(921)"
 - var phone_val     = "3221232"
 - var email         = "manager@company.com"
@@ -55,9 +55,16 @@ html
         // endbower
 
         // bower:js
+        script(src='/bower/jquery/dist/jquery.js')
+        script(src='/bower/tether/tether.js')
+        script(src='/bower/select/select.min.js')
         // endbower
 
+        script(src='js/btn-up.js')
+        script(src='js/main.js')
+
         link(rel="stylesheet", href="css/main.css")
+        link(rel="stylesheet", href="css/select-theme-default.css")
 
     body
         .wrapper
@@ -68,7 +75,7 @@ html
                             img(src="img/logo-header.png" alt="")
                             | header logo text
                         .header__in-contacts
-                            a.header__in-contacts__phone(href="#{phone_code}#{phone_val}")
+                            a.header__in-contacts__phone(href="tel:#{phone_code}#{phone_val}")
                                 span.header__in-contacts__phone-code= phone_code
                                 |#{phone_val}
                             br
@@ -108,13 +115,13 @@ html
                                                 a.pagination__item-link(href="#")= item
 
 
-                            if layouttypes.length
-                                select.layouttypes
-                                    each item, index in layouttypes
-                                        if index == 0
-                                            option.layouttypes__item(selected="selected")= item
-                                        else
-                                            option.layouttypes__item= item
+
+                            select.layouttypes
+                                each item, index in layouttypes
+                                    if index == 0
+                                        option.layouttypes__item(selected="selected" value="#{item.value}")= item.txt
+                                    else
+                                        option.layouttypes__item(value="#{item.value}")= item.txt
 
                         aside.content__left
                             if leftMenuLvl_1.length
@@ -138,20 +145,21 @@ html
                                 ul.catalog
                                     each item, index in catalog
                                         li.catalog__item.clearfix
-                                            .catalog__item-img-wp
-                                                img.catalog__item-img(src="#{item.img}" alt="")
+                                            .catalog__item-in
+                                                .catalog__item-img-wp
+                                                    img.catalog__item-img(src="#{item.img}" alt="")
 
-                                            .catalog__item-data
-                                                a.catalog__item-link(href="#")=item.title
+                                                .catalog__item-data
+                                                    a.catalog__item-link(href="#")=item.title
 
-                                                ul.catalog__itemprops
-                                                    each prop, p_index in catalog_item_desc
-                                                        li.catalog__itemprops-item
-                                                            span.catalog__itemprops-item-key #{prop.key}:
-                                                            if p_index == catalog_item_desc.length-1
-                                                                span.catalog__itemprops-item-val #{prop.val}
-                                                            else
-                                                                span.catalog__itemprops-item-val #{prop.val},
+                                                    ul.catalog__itemprops
+                                                        each prop, p_index in catalog_item_desc
+                                                            li.catalog__itemprops-item
+                                                                span.catalog__itemprops-item-key #{prop.key}:
+                                                                if p_index == catalog_item_desc.length-1
+                                                                    span.catalog__itemprops-item-val #{prop.val}
+                                                                else
+                                                                    span.catalog__itemprops-item-val #{prop.val},
 
                             .article
                                 h1| Пара слов о магазине
