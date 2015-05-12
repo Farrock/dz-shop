@@ -30,173 +30,189 @@ doctype html
 - var phone_val     = "3221232"
 - var email         = "manager@company.com"
 
-html
-    head
-        title dz-shop
+<!--[if lt IE 7]><html class="no-js ie lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js ie lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="no-js ie lt-ie9"><![endif]-->
+<!--[if IE 9]><html class="no-js ie lt-ie10"><![endif]-->
+head
+    title dz-shop
 
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    <!-- build:js js/ie.js -->
+    <!--[if lt IE 9]>
+    script(src='js/html5shiv.js')
+    script(src='js/console.js')
+    script(src='js/selectors-ie8.js')
+    <![endif]-->
+    <!-- endbuild -->
 
-
-        meta(name="description", content="loftschool_homework-shop")
-        meta(name="keywords", content="loftschool_homework-shop")
-        meta(name="author", content="Павел Щеглов")
-
-
-        <!-- build:css fonts/fonts.min.css -->
-        link(rel="stylesheet", href="fonts/elektra_light_pro-webfont.css")
-        link(rel="stylesheet", href="fonts/elektra_medium_pro-webfont.css")
-        link(rel="stylesheet", href="fonts/elektra_medium_pro_italic-webfont.css")
-        link(rel="stylesheet", href="fonts/font-webfont.css")
-        <!-- endbuild -->
-
-        <!-- build:css css/vendor.min.css -->
-        // bower:css
-        link(rel='stylesheet', href='/bower/normalize.css/normalize.css')
-        // endbower
-        <!-- endbuild -->
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
 
 
-        <!-- build:css css/main.min.css -->
-        link(rel="stylesheet", href="css/main.css")
-        link(rel="stylesheet", href="css/select-theme-default.css")
-        <!-- endbuild -->
-    body
-        .wrapper
-            .main-content
-                header.header
-                    .container
-                        a.header__in-logo(href="/")
-                            img(src="img/logo-header.png" alt="")
-                            | header logo text
-                        .header__in-contacts
-                            a.header__in-contacts__phone(href="tel:#{phone_code}#{phone_val}")
-                                span.header__in-contacts__phone-code= phone_code
-                                |#{phone_val}
-                            br
-                            a.header__in-contacts__email(href="#{email}") #{email}
+    meta(name="description", content="loftschool_homework-shop")
+    meta(name="keywords", content="loftschool_homework-shop")
+    meta(name="author", content="Павел Щеглов")
 
-                .content
-                    .container
+    link(rel="shortcut icon" href="/favicon.ico" type="image/x-icon")
+    link(rel="icon" href="/favicon.ico" type="image/x-icon")
 
-                        ul.topcatalog
-                            each item, index in topCatalog
-                                if(item.current)
-                                    li.topcatalog__item(class="#{item.current}")
-                                        a.topcatalog__item-link(href="#")
-                                            span.topcatalog__item-link-in= item.name
-                                else
-                                    li.topcatalog__item
-                                        a.topcatalog__item-link(href="#")
-                                            span.topcatalog__item-link-in= item
+    <!-- build:css fonts/fonts.min.css -->
+    link(rel="stylesheet", href="fonts/elektra_light_pro-webfont.css")
+    link(rel="stylesheet", href="fonts/elektra_medium_pro-webfont.css")
+    link(rel="stylesheet", href="fonts/elektra_medium_pro_italic-webfont.css")
+    link(rel="stylesheet", href="fonts/font-webfont.css")
+    <!-- endbuild -->
 
-                        .navline-wp.clearfix
-                            if breadcrumbs.length
-                                ul.breadcrumbs
-                                    each item, index in breadcrumbs
-                                        li.breadcrumbs__item
-                                            if index == breadcrumbs.length-1
-                                                span.breadcrumbs__item-last= item
-                                            else
-                                                a.breadcrumbs__item-link(href="")= item
-                            if pagination.length
-                                ul.pagination
-                                    each item, index in pagination
-                                        if index == 0
-                                            li.pagination__item.current
-                                                span.pagination__item-link= item
-                                        else
-                                            li.pagination__item
-                                                a.pagination__item-link(href="#")= item
-
-
-
-                            select.layouttypes
-                                each item, index in layouttypes
-                                    if index == 0
-                                        option.layouttypes__item(selected="selected" value="#{item.value}")= item.txt
-                                    else
-                                        option.layouttypes__item(value="#{item.value}")= item.txt
-
-                        aside.content__left
-                            if leftMenuLvl_1.length
-                                ul.leftmenu
-                                    each item_1, index in leftMenuLvl_1
-                                        if index == 0
-                                            li.leftmenu__item.current
-                                                a.leftmenu__item-link(href="#")=item_1
-                                                if leftMenuLvl_2.length
-                                                    ul.leftmenu-lvl2
-                                                        each item_2, index in leftMenuLvl_2
-                                                            li.leftmenu-lvl2__item
-                                                                a.leftmenu-lvl2__item-link(href="#")=item_2
-                                        else
-                                            li.leftmenu__item
-                                                a.leftmenu__item-link(href="#")=item_1
-
-
-                        .content__right
-                            if catalog.length
-                                ul.catalog
-                                    each item, index in catalog
-                                        li.catalog__item.clearfix
-                                            .catalog__item-in
-                                                .catalog__item-img-wp
-                                                    img.catalog__item-img(src="#{item.img}" alt="")
-
-                                                .catalog__item-data
-                                                    a.catalog__item-link(href="#")=item.title
-
-                                                    ul.catalog__itemprops
-                                                        each prop, p_index in catalog_item_desc
-                                                            li.catalog__itemprops-item
-                                                                span.catalog__itemprops-item-key #{prop.key}:
-                                                                if p_index == catalog_item_desc.length-1
-                                                                    span.catalog__itemprops-item-val #{prop.val}
-                                                                else
-                                                                    span.catalog__itemprops-item-val #{prop.val},
-
-                            .article
-                                h1| Пара слов о магазине
-                                p| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor.
-                                p|   Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.
-                            .bth-up Наверх
-        footer.footer
-            .container
-                .content__left
-                    a.footer__logo(href="link")
-                        img(src="img/logo-footer.png" alt="")
-                        | footer logo text
-
-                .content__right
-                    .footer__menu
-                        each menulist in footerMenu2
-                            ul.footer_menu__list
-                                each menuitem, i in menulist
-                                    li.footer__menu__item
-                                        if(i == 1)
-                                            span.footer__menu__item-title= menuitem
-                                        else
-                                            a.footer__menu__item-link(href="#")= menuitem
-                    .footer__links
-                        ul.footer__links__app-stores
-                            each item in footerLinksApp
-                                li.footer__links__app-stores__item
-                                    a.footer__links__app-stores__item-link(href="#{item.href}" class="#{item.class}")=item.text
-                        ul.footer__links__soc
-                            each item in footerLinksSoc
-                                li.footer__links__soc__item
-                                    a.footer__links__soc__item-link(href="#{item.href}" class="#{item.class}")=item.text
-
-    <!-- build:js js/vendor.js -->
-    // bower:js
-    script(src='/bower/jquery/dist/jquery.js')
-    script(src='/bower/tether/tether.js')
-    script(src='/bower/select/select.min.js')
+    <!-- build:css css/vendor.min.css -->
+    // bower:css
+    link(rel='stylesheet', href='/css/jquery.formstyler.css')
+    link(rel='stylesheet', href='/bower/normalize.css/normalize.css')
     // endbower
     <!-- endbuild -->
 
-    <!-- build:js js/main.js -->
-    script(src='js/btn-up.js')
-    script(src='js/main.js')
+
+    <!-- build:css css/main.min.css -->
+    link(rel="stylesheet", href="css/main.css")
     <!-- endbuild -->
+
+
+body
+    .wrapper
+        .main-content
+            header.header
+                .container
+                    a.header__in-logo(href="/")
+                        img(src="img/logo-header.png" alt="")
+                        | header logo text
+                    .header__in-contacts
+                        a.header__in-contacts__phone(href="tel:#{phone_code}#{phone_val}")
+                            span.header__in-contacts__phone-code= phone_code
+                            |#{phone_val}
+                        br
+                        a.header__in-contacts__email(href="#{email}") #{email}
+
+            .content
+                .container
+
+                    ul.topcatalog
+                        each item, index in topCatalog
+                            if(item.current)
+                                li.topcatalog__item(class="#{item.current}")
+                                    a.topcatalog__item-link(href="#")
+                                        span.topcatalog__item-link-in= item.name
+                            else
+                                li.topcatalog__item
+                                    a.topcatalog__item-link(href="#")
+                                        span.topcatalog__item-link-in= item
+
+                    .navline-wp.clearfix
+                        if breadcrumbs.length
+                            ul.breadcrumbs
+                                each item, index in breadcrumbs
+                                    li.breadcrumbs__item
+                                        if index == breadcrumbs.length-1
+                                            span.breadcrumbs__item-last= item
+                                        else
+                                            a.breadcrumbs__item-link(href="")= item
+                        if pagination.length
+                            ul.pagination
+                                each item, index in pagination
+                                    if index == 0
+                                        li.pagination__item.current
+                                            span.pagination__item-link= item
+                                    else
+                                        li.pagination__item
+                                            a.pagination__item-link(href="#")= item
+
+
+
+                        select.layouttypes
+                            each item, index in layouttypes
+                                if index == 0
+                                    option.layouttypes__item(selected="selected" value="#{item.value}")= item.txt
+                                else
+                                    option.layouttypes__item(value="#{item.value}")= item.txt
+
+                    aside.content__left
+                        if leftMenuLvl_1.length
+                            ul.leftmenu
+                                each item_1, index in leftMenuLvl_1
+                                    if index == 0
+                                        li.leftmenu__item.current
+                                            a.leftmenu__item-link(href="#")=item_1
+                                            if leftMenuLvl_2.length
+                                                ul.leftmenu-lvl2
+                                                    each item_2, index in leftMenuLvl_2
+                                                        li.leftmenu-lvl2__item
+                                                            a.leftmenu-lvl2__item-link(href="#")=item_2
+                                    else
+                                        li.leftmenu__item
+                                            a.leftmenu__item-link(href="#")=item_1
+
+
+                    .content__right
+                        if catalog.length
+                            ul.catalog
+                                each item, index in catalog
+                                    li.catalog__item.clearfix
+                                        .catalog__item-in
+                                            .catalog__item-img-wp
+                                                img.catalog__item-img(src="#{item.img}" alt="")
+
+                                            .catalog__item-data
+                                                a.catalog__item-link(href="#")=item.title
+
+                                                ul.catalog__itemprops
+                                                    each prop, p_index in catalog_item_desc
+                                                        li.catalog__itemprops-item
+                                                            span.catalog__itemprops-item-key #{prop.key}:
+                                                            if p_index == catalog_item_desc.length-1
+                                                                span.catalog__itemprops-item-val #{prop.val}
+                                                            else
+                                                                span.catalog__itemprops-item-val #{prop.val},
+
+                        .article
+                            h1| Пара слов о магазине
+                            p| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor.
+                            p|   Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.
+                        .bth-up Наверх
+    footer.footer
+        .container
+            .content__left
+                a.footer__logo(href="link")
+                    img(src="img/logo-footer.png" alt="")
+                    | footer logo text
+
+            .content__right
+                .footer__menu
+                    each menulist in footerMenu2
+                        ul.footer_menu__list
+                            each menuitem, i in menulist
+                                li.footer__menu__item
+                                    if(i == 1)
+                                        span.footer__menu__item-title= menuitem
+                                    else
+                                        a.footer__menu__item-link(href="#")= menuitem
+                .footer__links
+                    ul.footer__links__app-stores
+                        each item in footerLinksApp
+                            li.footer__links__app-stores__item
+                                a.footer__links__app-stores__item-link(href="#{item.href}" class="#{item.class}")=item.text
+                    ul.footer__links__soc
+                        each item in footerLinksSoc
+                            li.footer__links__soc__item
+                                a.footer__links__soc__item-link(href="#{item.href}" class="#{item.class}")=item.text
+
+
+
+<!-- build:js js/vendor.js -->
+// bower:js
+script(src='/bower/jquery/dist/jquery.js')
+script(src='/js/jquery.formstyler.js')
+// endbower
+<!-- endbuild -->
+
+<!-- build:js js/main.js -->
+script(src='js/btn-up.js')
+script(src='js/main.js')
+<!-- endbuild -->

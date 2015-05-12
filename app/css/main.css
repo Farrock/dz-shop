@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .clearfix:after,.clearfix:before,.container:after,.container:before{content:" ";display:table}
 .clearfix:after,.container:after{clear:both}
 a{color:#00b9fe}
@@ -16,10 +15,10 @@ body{color:#5c7b98}
 .topcatalog .topcatalog__item{margin:0;padding:0;list-style-type:none;display:inline-block}
 .topcatalog .topcatalog__item{border-bottom:1px solid #d3d3d3}
 .topcatalog .topcatalog__item:hover .topcatalog__item-link-in:after{background:url(../img/top_menu_bg_hover-sep.png) no-repeat top right!important}
-.topcatalog .topcatalog__item:last-child .topcatalog__item-link-in{padding-right:7px}
-.topcatalog .topcatalog__item:last-child .topcatalog__item-link-in:after{display:block;width:16px;height:42px;background:url(../img/top_menu_bg_right.png) no-repeat top right;content:" ";position:absolute;right:-14px;top:-2px}
+.topcatalog .topcatalog__item .last-child .topcatalog__item-link-in,.topcatalog .topcatalog__item:last-child .topcatalog__item-link-in{padding-right:7px}
+.topcatalog .topcatalog__item .last-child .topcatalog__item-link-in:after,.topcatalog .topcatalog__item:last-child .topcatalog__item-link-in:after{display:block;width:16px;height:42px;background:url(../img/top_menu_bg_right.png) no-repeat top right;content:" ";position:absolute;right:-14px;top:-2px}
 .topcatalog .current .topcatalog__item-link{background:url(../img/top_menu_bg_left_active.png) top left no-repeat}
-.topcatalog .current .topcatalog__item-link:last-child .topcatalog__item-link-in:after{background:url(../img/top_menu_bg_active-sep.png) no-repeat top right}
+.topcatalog .current .topcatalog__item-link .last-child .topcatalog__item-link-in:after,.topcatalog .current .topcatalog__item-link:last-child .topcatalog__item-link-in:after{background:url(../img/top_menu_bg_active-sep.png) no-repeat top right}
 .topcatalog .current .topcatalog__item-link-in{color:#fff;background-color:#00b9fe}
 .topcatalog .current .topcatalog__item-link-in:hover{color:#fff}
 .topcatalog .topcatalog__item-link{position:relative;display:inline-block;background:url(../img/top_menu_bg_left.png) top left no-repeat;padding-left:16px;font-size:15px}
@@ -31,10 +30,11 @@ body{color:#5c7b98}
 .navline-wp .breadcrumbs{font-family:elektra_light_pro;float:left;font-size:13px;margin:0;padding:0;list-style-type:none}
 .navline-wp .breadcrumbs .breadcrumbs__item{margin:0;padding:0;list-style-type:none;display:inline-block}
 .navline-wp .breadcrumbs .breadcrumbs__item-link:after{padding-left:5px;content:'';display:inline-block;width:5px;height:7px;background:url(../img/arr.png) center right no-repeat}
+.navline-wp .layouttypes{float:right;poasition:relative;right:30px;top:-5px}
 .navline-wp .pagination{float:right;margin:0;padding:0;list-style-type:none}
 .navline-wp .pagination .pagination__item{margin:0;padding:0;list-style-type:none;display:inline-block}
 .navline-wp .pagination .pagination__item{margin-right:4px}
-.navline-wp .pagination .pagination__item:last-child{margin-right:0}
+.navline-wp .pagination .pagination__item .last-child,.navline-wp .pagination .pagination__item:last-child{margin-right:0}
 .content__left{float:left;width:230px}
 .content__left .leftmenu{font-family:elektra_light_pro;font-size:15px;margin:0;padding:0;list-style-type:none}
 .content__left .leftmenu .leftmenu__item{margin:0;padding:0;list-style-type:none;display:block}
@@ -62,7 +62,7 @@ body{color:#5c7b98}
 .content__right .catalog .catalog__item .catalog__item-data .catalog__itemprops .catalog__itemprops-item{font-family:elektra_light_pro;font-size:14px}
 .content__right .catalog .catalog__item .catalog__item-data .catalog__itemprops .catalog__itemprops-item .catalog__itemprops-item-key{padding-right:4px}
 .content__right .catalog.catalog-grid .catalog__item{min-height:366px;display:block;float:left;width:228px;padding:0;margin-right:25px}
-.content__right .catalog.catalog-grid .catalog__item:nth-child(3n){margin-right:0}
+.content__right .catalog.catalog-grid .catalog__item .nth-child_3n,.content__right .catalog.catalog-grid .catalog__item:nth-child(3n){margin-right:0}
 .content__right .catalog.catalog-grid .catalog__item .catalog__item-in{padding:15px}
 .content__right .catalog.catalog-grid .catalog__item .catalog__item-img-wp{position:relative;float:none;width:auto;width:175px;height:168px;margin:auto;margin-bottom:0}
 .content__right .catalog.catalog-grid .catalog__item .catalog__item-img-wp .catalog__item-img{position:relative;top:center}

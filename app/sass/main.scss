@@ -90,7 +90,7 @@ body {
         background: url(../img/top_menu_bg_hover-sep.png) no-repeat top right !important;
       }
     }
-    &:last-child {
+    &:last-child, .last-child {
       .topcatalog__item-link-in {
         padding-right: 7px;
       }
@@ -112,7 +112,7 @@ body {
   .current {
     .topcatalog__item-link {
       background: url('../img/top_menu_bg_left_active.png') top left no-repeat;
-      &:last-child {
+      &:last-child, .last-child {
         .topcatalog__item-link-in:after {
           background: url(../img/top_menu_bg_active-sep.png) no-repeat top right;
         }
@@ -184,25 +184,23 @@ body {
     .breadcrumbs__item-last {
     }
   }
-/*
-  .layouttypes {
-    float: right;
-    margin-right: 20px;
-    .layouttypes__item {
-      &[selected=selected] {
 
-      }
+    .layouttypes {
+      float: right;
+      poasition: relative;
+      right: 30px;
+      top: -5px;
     }
-  }*/
 
   .pagination {
     float: right;
     @include clear_list(inline-block, '.pagination__item');
     .pagination__item {
       margin-right: 4px;
-      &:last-child {
+      &:last-child, .last-child {
         margin-right: 0;
       }
+
     }
   }
 
@@ -318,20 +316,20 @@ body {
 
       .catalog__item {
         min-height: 366px;
-        display: block; float: left;
-        width:228px;
+        display: block;
+        float: left;
+        width: 228px;
         padding: 0;
         margin-right: 25px;
-        &:nth-child(3n){
+        &:nth-child(3n), .nth-child_3n {
           margin-right: 0;
         }
 
-
-        .catalog__item-in{
+        .catalog__item-in {
           padding: 15px;
         }
 
-        .catalog__item-img-wp{
+        .catalog__item-img-wp {
           position: relative;
           float: none;
           width: auto;
@@ -339,22 +337,23 @@ body {
           height: 168px;
           margin: auto;
           margin-bottom: 0px;
-          .catalog__item-img{
+          .catalog__item-img {
             position: relative;
             top: center;
           }
         }
 
-        .catalog__item-data{
+        .catalog__item-data {
           float: none !important;
           width: auto;
           line-height: 20px;
-          .catalog__itemprops{
-            .catalog__itemprops-item-key{
+          .catalog__itemprops {
+            .catalog__itemprops-item-key {
               display: inline-block;
               min-width: 90px;
             }
-            .catalog__itemprops-item-val{}
+            .catalog__itemprops-item-val {
+            }
           }
         }
       }
@@ -509,18 +508,18 @@ body {
 
 }
 
-.bth-up{
-  width:77px;
-  height:39px;
+.bth-up {
+  width: 77px;
+  height: 39px;
   background: url('../img/btn-up.png') center center no-repeat;
-  text-align:center;
-  padding-top:20px;
-  position:fixed;
-  bottom:10px;
-  right:10px;
-  cursor:pointer;
-  display:none;
-  color:white;
+  text-align: center;
+  padding-top: 20px;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+  display: none;
+  color: white;
   font-family: 'elektra_light_pro';
   font-weight: bold;
   font-size: 18px;
