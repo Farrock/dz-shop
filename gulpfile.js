@@ -2,6 +2,7 @@
 'use strict';
 
 var gulp        = require("gulp");
+var gulp2        = require("gulp");
 var jade        = require('gulp-jade');
 var prettify    = require('gulp-prettify');
 var wiredep     = require('wiredep').stream;
